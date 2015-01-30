@@ -9,8 +9,14 @@
   </div>
 
   <div class="field">
-  	<%= f.label :username %>
+  	<%= f.label :username %><br />
   	<%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="field">
+  	<%= f.label :avatar %>
+  	<%= f.file_field :avatar %>
+  	<%= f.hidden_field :avatar_cache %>
   </div>
 
   <div class="field">
