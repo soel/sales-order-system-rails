@@ -76,6 +76,15 @@
 	<strong>コメント:</strong>
 	<%= simple_format comment.body %>
 </p>
+  <% if comment.comment_attachments.present? %>
+    <strong>添付ファイル</strong><br>
+    <% comment.comment_attachments.each do |a| %>
+      <%if a.document_url.present?%>
+        <% commname = File.basename a.document_url%>
+        <%= link_to(commname, a.document_url) %><br>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>
 
 <h2>コメントを追加</h2>
@@ -85,6 +94,12 @@
 	<%= f.hidden_field :user_id, :value => @user.id %>
 	<%= f.label :bosy, "コメント"%><br />
 	<%= f.text_area :body, cols: 60, rows: 8 %>
+	<%= f.fields_for ([:comment_attachments, comm.comment_attachments.build]) do |c| %>
+	  <div class="field">
+	  	<%= c.label :document %>
+	  	<%= c.file_field :document, :multiple => true, name: "comment_attachments[document][]"%>
+	  </div>
+	<% end %>
 </p>
  <p>
     <%= f.submit 'コメント投稿' %>

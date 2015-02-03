@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :comment_attachments
+
   resources :order_attachments
 
   resources :orders do

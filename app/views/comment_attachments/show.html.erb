@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @comment_attachment.comment_id %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @comment_attachment.document %>
+</p>
+
+<%= link_to 'Edit', edit_comment_attachment_path(@comment_attachment) %> |
+<%= link_to 'Back', comment_attachments_path %>
