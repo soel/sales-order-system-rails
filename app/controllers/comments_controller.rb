@@ -11,6 +11,22 @@ class CommentsController < ApplicationController
       end
     end
     
+    commenter = @order.comments.pluck(:user_id)
+    commenter.uniq!
+    
+    users = []
+    commenter.each do | c |
+      users << User.find(c).email
+    end
+    
+    ordermember = @order.users.pluck(:email)
+    ordergroup = @order.destemails.pluck(:email)
+    
+    tomail = users + ordermember + ordergroup
+    tomail.uniq!
+    
+    CommentMailer.comment_email(tomail, @order, @user).deliver
+    
     redirect_to order_path(@order)
   end
   
