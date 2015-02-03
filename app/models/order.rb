@@ -6,4 +6,6 @@ class Order < ActiveRecord::Base
     accepts_nested_attributes_for :order_attachments, allow_destroy: true
     
   has_many :comments
+  
+  has_many :destemails, through: :destgroups
 end

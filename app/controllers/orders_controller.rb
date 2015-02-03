@@ -34,6 +34,13 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
+    
+    user = @order.users.pluck(:email)
+    grmail = @order.destemails.pluck(:email)
+    tomail = user + grmail
+    
+    OrderMailer.order_email(tomail, @order).deliver
+    
     respond_with(@order)
   end
 
