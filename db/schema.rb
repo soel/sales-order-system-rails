@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203030231) do
+ActiveRecord::Schema.define(version: 20150203054523) do
 
   create_table "destemails", force: true do |t|
     t.string   "email"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 20150203030231) do
 
   add_index "destgroups_orders", ["destgroup_id"], name: "index_destgroups_orders_on_destgroup_id"
   add_index "destgroups_orders", ["order_id"], name: "index_destgroups_orders_on_order_id"
+
+  create_table "order_attachments", force: true do |t|
+    t.integer  "order_id"
+    t.string   "document"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "orders", force: true do |t|
     t.integer  "contract_number"

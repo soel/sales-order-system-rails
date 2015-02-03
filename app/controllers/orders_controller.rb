@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order_attachments = @order.order_attachments.all
     respond_with(@order)
   end
 
@@ -18,12 +19,15 @@ class OrdersController < ApplicationController
     @user_select = User.where.not(id: @user.id)
     @destgroup = Destgroup.all
     @order = Order.new
+    @order_attachment = @order.order_attachments.build
     respond_with(@order)
   end
 
   def edit
+    @user = current_user
     @destgroup = Destgroup.all
     @user_select = User.where.not(id: @user.id)
+    @order_all = @order.order_attachments.all
   end
 
   def create
@@ -49,6 +53,6 @@ class OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:contract_number, :customer_number, :delivery_date, :status, :web_url, :order_comment,
-      :user_ids => [], :destgroup_ids => [])
+      order_attachments_attributes: [:id, :order_id, :document], :user_ids => [], :destgroup_ids => [])
     end
 end

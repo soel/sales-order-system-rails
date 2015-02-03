@@ -1,28 +1,64 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Contract number:</strong>
+  <strong>契約番号:</strong>
   <%= @order.contract_number %>
 </p>
 
 <p>
-  <strong>Customer number:</strong>
+  <strong>顧客番号:</strong>
   <%= @order.customer_number %>
 </p>
 
 <p>
-  <strong>Delivery date:</strong>
+  <strong>依頼先:</strong>
+  <% @order.destgroups.each do |group| %>
+    <%= group.name %>
+  <% end %>
+</p>
+
+<p>
+	<strong>添付ファイル:</strong><br>
+	<% @order_attachments.each do |o| %>
+	  <% if o.document_url.present? %>
+	     <% name = File.basename o.document_url%>
+	     <%= link_to(name, o.document_url) %>
+	  <% end %>
+	<% end %>
+</p>
+
+<p>
+  <strong>予定納期:</strong>
   <%= @order.delivery_date %>
 </p>
 
 <p>
-  <strong>Status:</strong>
+  <strong>ステータス:</strong>
   <%= @order.status %>
+</p>
+
+<p>
+  <strong>作成日:</strong>
+  <%= @order.created_at %>
 </p>
 
 <p>
   <strong>Web url:</strong>
   <%= @order.web_url %>
+</p>
+
+<p>
+<strong>作成者</strong>
+  <%= @order.users[0].username %>
+</p>
+
+<p>
+<strong>メンバー</strong>
+<% if @order.users.length >= 2 %>
+  <% @order.users[1..-1].each do |member| %>
+    <%= member.username %>
+  <% end %>
+<% end %>
 </p>
 
 <p>

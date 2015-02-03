@@ -1,4 +1,4 @@
-<%= form_for(@order) do |f| %>
+<%= nested_form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -24,6 +24,28 @@
   	<%= f.label :destgroup_ids, '依頼先' %>
   	<%= f.collection_select :destgroup_ids, @destgroup, :id, :name, {}, {multiple: true} %>
   </div>
+  
+  <%= f.label :document, '添付ファイル' %><br>
+  <div>
+  <% unless @order.new_record?%>
+  <% @order_all.each do |o| %>
+	<% if o.document_url.present? %>
+		<%= File.basename o.document_url%><br>
+	<% end %>
+  <% end %>
+  </div>
+  <% end %>  
+  <% if @order.new_record? %>
+  <%= f.fields_for :order_attachments do |o| %>
+  <div class="field">
+  	<%= o.file_field :document %>
+  	<%= o.link_to_remove "フィールド削除" %>
+  </div>
+  <% end %>
+  <%= f.link_to_add "フィールドの追加", :order_attachments %>
+  <% else %>
+  <%= link_to '添付ファイルの追加', controller: "order_attachments", action: "new", order_id: @order.id%>
+  <% end %>
   
   <% unless @order.new_record? %>
   <div class="field">
