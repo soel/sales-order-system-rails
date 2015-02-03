@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203013750) do
+ActiveRecord::Schema.define(version: 20150203030231) do
 
   create_table "destemails", force: true do |t|
     t.string   "email"
@@ -32,6 +32,33 @@ ActiveRecord::Schema.define(version: 20150203013750) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "destgroups_orders", id: false, force: true do |t|
+    t.integer "destgroup_id", null: false
+    t.integer "order_id",     null: false
+  end
+
+  add_index "destgroups_orders", ["destgroup_id"], name: "index_destgroups_orders_on_destgroup_id"
+  add_index "destgroups_orders", ["order_id"], name: "index_destgroups_orders_on_order_id"
+
+  create_table "orders", force: true do |t|
+    t.integer  "contract_number"
+    t.integer  "customer_number"
+    t.date     "delivery_date"
+    t.string   "status"
+    t.text     "web_url"
+    t.text     "order_comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders_users", id: false, force: true do |t|
+    t.integer "order_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  add_index "orders_users", ["order_id"], name: "index_orders_users_on_order_id"
+  add_index "orders_users", ["user_id"], name: "index_orders_users_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

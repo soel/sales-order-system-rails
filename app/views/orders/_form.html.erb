@@ -1,0 +1,66 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contract_number, '契約番号' %><br>
+    <%= f.number_field :contract_number %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_number, '顧客番号' %><br>
+    <%= f.number_field :customer_number %>
+  </div>
+  
+  <div class="field">
+  	<%= f.label :destgroup_ids, '依頼先' %>
+  	<%= f.collection_select :destgroup_ids, @destgroup, :id, :name, {}, {multiple: true} %>
+  </div>
+  
+  <% unless @order.new_record? %>
+  <div class="field">
+    <%= f.label :delivery_date, '予定納期' %><br>
+    <%= f.date_select :delivery_date %>
+  </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :status, 'ステータス' %><br>
+    <%= f.select :status, ['確認中', '着手中', '作業完了'] %>
+  </div>
+  
+  <% if @order.new_record? %>
+    <div>
+      <%= f.label :user_ids, '作成者' %>
+      <%= f.check_box 'user_ids', {:name => 'order[user_ids][]', :checked => true }, @user.id, nil %>
+      <%= @user.username %>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :user_ids, 'メンバー' %><br>
+    <%= f.collection_select :user_ids, @user_select, :id, :username, {}, {multiple: true} %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :web_url %><br>
+    <%= f.text_area :web_url %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :order_comment, 'コメント' %><br>
+    <%= f.text_area :order_comment %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<h1>Listing orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contract number</th>
+      <th>Customer number</th>
+      <th>Delivery date</th>
+      <th>Status</th>
+      <th>Web url</th>
+      <th>Order comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.contract_number %></td>
+        <td><%= order.customer_number %></td>
+        <td><%= order.delivery_date %></td>
+        <td><%= order.status %></td>
+        <td><%= order.web_url %></td>
+        <td><%= order.order_comment %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path %>
