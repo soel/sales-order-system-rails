@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   
   validates :username, presence: true, uniqueness: true
   
+  def has_role?(name)
+     self.roles.where(name: name).length > 0
+  end
+  
   # allow users to update their accounts without passwords
   def update_without_current_password(params, *options)
     params.delete(:current_password)
