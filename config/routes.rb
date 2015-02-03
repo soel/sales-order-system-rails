@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   
   resources :order_attachments
 
-  resources :orders
+  resources :orders do
+    resources :comments
+  end
 
   resources :destemails
 

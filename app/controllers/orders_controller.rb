@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @user = current_user
     @order_attachments = @order.order_attachments.all
     respond_with(@order)
   end

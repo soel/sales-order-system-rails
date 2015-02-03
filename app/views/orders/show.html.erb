@@ -62,9 +62,36 @@
 </p>
 
 <p>
-  <strong>Order comment:</strong>
+  <strong>オーダー作成時のコメント:</strong><br />
   <%= @order.order_comment %>
 </p>
+
+<h2>コメント</h2>
+<% @order.comments.each do |comment| %>
+<p>
+	<strong>コメンター</strong>
+	<%= User.find(comment.user_id).username %>
+</p>
+<p>
+	<strong>コメント:</strong>
+	<%= simple_format comment.body %>
+</p>
+<% end %>
+
+<h2>コメントを追加</h2>
+<%= form_for( [@order, comm = @order.comments.build] ) do |f| %>
+<p>
+	<%= @user.username %><br />
+	<%= f.hidden_field :user_id, :value => @user.id %>
+	<%= f.label :bosy, "コメント"%><br />
+	<%= f.text_area :body, cols: 60, rows: 8 %>
+</p>
+ <p>
+    <%= f.submit 'コメント投稿' %>
+</p>
+<% end %>
+
+
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
