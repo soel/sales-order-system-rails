@@ -1,0 +1,2 @@
+module DestemailsHelper
+end

@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130060258) do
+ActiveRecord::Schema.define(version: 20150203013750) do
+
+  create_table "destemails", force: true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "destemails_destgroups", id: false, force: true do |t|
+    t.integer "destemail_id", null: false
+    t.integer "destgroup_id", null: false
+  end
+
+  add_index "destemails_destgroups", ["destemail_id"], name: "index_destemails_destgroups_on_destemail_id"
+  add_index "destemails_destgroups", ["destgroup_id"], name: "index_destemails_destgroups_on_destgroup_id"
+
+  create_table "destgroups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

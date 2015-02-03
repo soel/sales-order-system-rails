@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :destemails
+
+  resources :destgroups
+
   devise_for :users, :controllers => {
       :registrations => "users/registrations"
   }

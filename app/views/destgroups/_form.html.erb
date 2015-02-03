@@ -1,0 +1,37 @@
+<%= form_for(@destgroup) do |f| %>
+  <% if @destgroup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destgroup.errors.count, "error") %> prohibited this destgroup from being saved:</h2>
+
+      <ul>
+      <% @destgroup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+  	<label>メールアドレスの選択</label>
+  	<ul>
+  		<% @destemails.each do |mail| %>
+  		  <li>
+  		  	<label>
+  		  		<% checked = mail.destgroups.exists?(@destgroup.id) ? true : false %>
+  		  		<%= f.check_box 'destemail_ids', { :name => 'destgroup[destemail_ids][]', :checked => checked }, mail.id, nil %>
+  		  		<%= mail.email %>
+  		  	</label>
+  		  </li>
+  		<% end %>
+  	</ul>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

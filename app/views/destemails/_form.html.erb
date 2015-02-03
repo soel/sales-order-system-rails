@@ -1,0 +1,21 @@
+<%= form_for(@destemail) do |f| %>
+  <% if @destemail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destemail.errors.count, "error") %> prohibited this destemail from being saved:</h2>
+
+      <ul>
+      <% @destemail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
