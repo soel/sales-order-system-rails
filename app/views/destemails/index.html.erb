@@ -1,6 +1,9 @@
-<h1>Listing destemails</h1>
+<div id='page-wrapper'>
+<div class='row'></div>
+<div class='col-lg-8'>
+<h1 class='page-header'>グループ用メールアドレス一覧</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Email</th>
@@ -12,7 +15,6 @@
     <% @destemails.each do |destemail| %>
       <tr>
         <td><%= destemail.email %></td>
-        <td><%= link_to 'Show', destemail %></td>
         <td><%= link_to 'Edit', edit_destemail_path(destemail) %></td>
         <td><%= link_to 'Destroy', destemail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -22,4 +24,7 @@
 
 <br>
 
-<%= link_to 'New Destemail', new_destemail_path %>
+<%= link_to '新しいメールアドレスの登録', new_destemail_path %>
+
+</div>
+</div>
