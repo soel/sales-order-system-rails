@@ -1,30 +1,29 @@
 <div id='page-wrapper'>
-<div class='row'></div>
-<div class='col-lg-8'>
-<h1 class='page-header'>グループ用メールアドレス一覧</h1>
+  <div class='row'>
+    <div class='col-lg-8'>
+      <h1 class='page-header'>グループ用メールアドレス一覧</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <table class="table" id="destemail">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @destemails.each do |destemail| %>
-      <tr>
-        <td><%= destemail.email %></td>
-        <td><%= link_to 'Edit', edit_destemail_path(destemail) %></td>
-        <td><%= link_to 'Destroy', destemail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @destemails.each do |destemail| %>
+          <tr>
+            <td><%= destemail.email %></td>
+            <td><%= link_to '編集', edit_destemail_path(destemail) %></td>
+            <td><%= link_to '削除', destemail, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<br>
+      <%= link_to '新しいメールアドレスの登録', new_destemail_path %>
 
-<%= link_to '新しいメールアドレスの登録', new_destemail_path %>
-
-</div>
+    </div>
+  </div>
 </div>
