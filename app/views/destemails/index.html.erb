@@ -3,6 +3,9 @@
     <div class='col-lg-8'>
       <h1 class='page-header'>グループ用メールアドレス一覧</h1>
 
+
+      <%= paginate(@destemails)%>
+
       <table class="table" id="destemail">
         <thead>
           <tr>
@@ -21,7 +24,8 @@
           <% end %>
         </tbody>
       </table>
-
+      <%= paginate(@destemails)%>
+      
       <%= link_to '新しいメールアドレスの登録', new_destemail_path %>
 
     </div>

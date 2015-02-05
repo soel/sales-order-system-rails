@@ -4,7 +4,8 @@ class DestemailsController < ApplicationController
   respond_to :html
 
   def index
-    @destemails = Destemail.all
+    #@destemails = Destemail.all
+    @destemails = Destemail.page(params[:page]).per(10).order(:id)
     respond_with(@destemails)
   end
 
