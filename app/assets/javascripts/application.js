@@ -25,6 +25,8 @@
 //= require sb-admin/jquery.flot.tooltip.min
 //= require sb-admin/raphael-2.1.0.min
 //= require sb-admin/morris
+//= require jquery.ui.widget
+//= require jquery-picklist
 
 //= require sb-admin/sb-admin
 

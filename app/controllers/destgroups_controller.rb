@@ -23,13 +23,19 @@ class DestgroupsController < ApplicationController
 
   def create
     @destgroup = Destgroup.new(destgroup_params)
-    @destgroup.save
-    respond_with(@destgroup)
+    if @destgroup.save
+      redirect_to destgroups_path
+    else
+      respond_with(@destgroup)
+    end
   end
 
   def update
-    @destgroup.update(destgroup_params)
-    respond_with(@destgroup)
+    if @destgroup.update(destgroup_params)
+      redirect_to destgroups_path
+    else
+      respond_with(@destgroup)
+    end
   end
 
   def destroy

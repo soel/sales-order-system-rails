@@ -18,26 +18,35 @@
     <div class="form-group">
       <%= f.text_field :name, class: 'form-control', autofocus: true, :placeholder => "グループ名"%>
     </div>
-  
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-lg-8'>
     <div class="form-group">
       <label>メールアドレスの選択</label>
-      <ul>
-      <% @destemails.each do |mail| %>
-        <li>
-          <label>
-            <% checked = mail.destgroups.exists?(@destgroup.id) ? true : false %>
-            <%= f.check_box 'destemail_ids', { :name => 'destgroup[destemail_ids][]', :checked => checked }, mail.id, nil %>
-            <%= mail.email %>
-          </label>
-        </li>
-      <% end %>
-      </ul>
+        <select id="destemail_ids" name="destgroup[destemail_ids][]" multiple="multiple">
+        <% @destemails = Destemail.all%>
+          <% @destemails.each do |mail| %>
+            <% if mail.destgroups.exists?(@destgroup.id) %>
+              <option value=<%= mail.id %> selected="selected"><%= mail.email %></option>
+            <% else %>
+              <option value=<%= mail.id %>><%= mail.email %></option>
+            <% end %>
+          <% end %>
+        </select>
     </div>
-  
     <div class="actions">
       <%= f.submit '登録する', class: 'btn btn-primary' %>
     </div>
   </div>
 </div>
-<% end %>
 
+
+<% end %>
+<script>
+  $(function()
+{
+    $("#destemail_ids").pickList();
+});
+</script>
