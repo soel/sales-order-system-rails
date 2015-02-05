@@ -23,15 +23,19 @@ class DestemailsController < ApplicationController
 
   def create
     @destemail = Destemail.new(destemail_params)
-    @destemail.save
-    #respond_with(@destemail)
-    redirect_to destemails_path
+    if @destemail.save
+      redirect_to destemails_path
+    else
+      respond_with(@destemail)
+    end
   end
 
   def update
-    @destemail.update(destemail_params)
-    #respond_with(@destemail)
-    redirect_to destemails_path
+    if @destemail.update(destemail_params)
+      redirect_to destemails_path
+    else
+      respond_with(@destemail)
+    end
   end
 
   def destroy
