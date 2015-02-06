@@ -1,92 +1,131 @@
-<%= nested_form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
+<div class='row'>
+  <%= nested_form_for(@order) do |f| %>
+  <div class='col-lg-7'>
+    <% if @order.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
       <ul>
       <% @order.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :contract_number, '契約番号' %><br>
-    <%= f.number_field :contract_number %>
-  </div>
-  <div class="field">
-    <%= f.label :customer_number, '顧客番号' %><br>
-    <%= f.number_field :customer_number %>
-  </div>
+    <div class="form-group">
+      <%= f.label :contract_number, '契約番号' %><br>
+      <%= f.number_field :contract_number, class: 'form-control' %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :customer_number, '顧客番号' %><br>
+      <%= f.number_field :customer_number, class: 'form-control' %>
+    </div>
   
-  <div class="field">
-  	<%= f.label :destgroup_ids, '依頼先' %>
-  	<%= f.collection_select :destgroup_ids, @destgroup, :id, :name, {}, {multiple: true} %>
-  </div>
+    <div class="form-group">
+      <%= f.label :destgroup_ids, '依頼先' %><br>
+      <select id="order_destgroup_ids" name="order[destgroup_ids][]" multiple="multiple">
+        <% @destgroup.each do |group| %>
+          <% if group.orders.exists?(@order.id) %>
+            <option value=<%= group.id %> selected="selected"><%= group.name %></option>
+          <% else%>
+            <option value=<%= group.id %>><%= group.name %></option>
+          <% end %>
+        <% end %>
+      </select>
+    </div>
   
-  <%= f.label :document, '添付ファイル' %><br>
-  <div>
-  <% unless @order.new_record?%>
-  <% @order_all.each do |o| %>
-	<% if o.document_url.present? %>
-		<%= File.basename o.document_url%><br>
-	<% end %>
-  <% end %>
-  </div>
-  <% end %>  
-  <% if @order.new_record? %>
-  <%= f.fields_for :order_attachments do |o| %>
-  <div class="field">
-  	<%= o.file_field :document %>
-  	<%= o.link_to_remove "フィールド削除" %>
-  </div>
-  <% end %>
-  <%= f.link_to_add "フィールドの追加", :order_attachments %>
-  <% else %>
-  <%= link_to '添付ファイルの追加', controller: "order_attachments", action: "new", order_id: @order.id%>
-  <% end %>
+    <div class="form-group">
+      <%= f.label :document, '添付ファイル' %><br>
+      <% unless @order.new_record?%>
+        <% @order_all.each do |o| %>
+          <% if o.document_url.present? %>
+            <%= File.basename o.document_url%><br>
+          <% end %>
+        <% end %>  
+      <% else %>
+        <%= f.fields_for :order_attachments do |o| %>
+          <%= o.file_field :document %>
+          <%= o.link_to_remove "フィールド削除" %>
+        <% end %>
+        <%= f.link_to_add "フィールドの追加", :order_attachments %>
+      <% end %>
+    </div>
   
-  <% unless @order.new_record? %>
-  <div class="field">
-    <%= f.label :delivery_date, '予定納期' %><br>
-    <%= f.date_select :delivery_date %>
-  </div>
-  <% end %>
+    <% unless @order.new_record? %>
+    <div class="form-group">
+      <%= f.label :delivery_date, '予定納期' %><br>
+      <%= f.date_select :delivery_date %>
+    </div>
+    <% end %>
   
-  <div class="field">
-    <%= f.label :status, 'ステータス' %><br>
-    <%= f.select :status, ['確認中', '着手中', '作業完了'] %>
-  </div>
+    <div class="form-group">
+      <%= f.label :status, 'ステータス' %><br>
+      <%= f.select :status, ['確認中', '着手中', '作業完了'], {},  { :class => 'form-control' } %>
+    </div>
   
-  <% if @order.new_record? %>
-    <div>
-      <%= f.label :user_ids, '作成者' %>
-      <%= f.check_box 'user_ids', {:name => 'order[user_ids][]', :checked => true }, @user.id, nil %>
+    <% if @order.new_record? %>
+    <div class="form-group">
+      <%= f.label :user_ids, '作成者' %><br>
+      <%= f.hidden_field 'user_ids', {:name => 'order[user_ids][]', :value => @user.id} %>
       <%= @user.username %>
     </div>
-  <% else %>
-      <%= f.label :user_ids, '作成者' %>
+    <% else %>
+    <div class="form-group">
+      <%= f.label :user_ids, '作成者' %><br>
       <%= f.hidden_field 'user_ids', {:name => 'order[user_ids][]', :value => @owner.id} %>
       <%= @owner.username %>
+    </div>
+    <% end %>
+  
+    <div class="form-group">
+      <%= f.label :user_ids, 'メンバー' %><br>
+      <select id="order_user_ids_table" name="order[user_ids][]" multiple="multiple">
+        <% @user_select.each do |user| %>
+          <% if user.orders.exists?(@order.id) %>
+            <option value=<%= user.id %> selected="selected"><%= user.username %></option>
+          <% else %>
+            <option value=<%= user.id %>><%= user.username %></option>
+          <% end %>
+        <% end %>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :web_url %><br>
+      <%= f.text_field :web_url, class: 'form-control' %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :order_comment, 'コメント' %><br>
+      <%= f.text_area :order_comment, class: 'form-control', rows: "3" %>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-lg-2'>
+    <div class="actions">
+      <%= f.submit '登録する', class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <div class='col-lg-4 col-lg-offset-3'>
+    <%= link_to 'キャンセル', orders_path, class: 'btn btn-danger' %>
+  </div>
   <% end %>
-  
-  <div class="field">
-    <%= f.label :user_ids, 'メンバー' %><br>
-    <%= f.collection_select :user_ids, @user_select, :id, :username, {}, {multiple: true} %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :web_url %><br>
-    <%= f.text_area :web_url %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :order_comment, 'コメント' %><br>
-    <%= f.text_area :order_comment %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+<script>
+  $(function()
+{
+    $("#order_destgroup_ids").pickList({
+     sourceListLabel:    "一覧",
+     targetListLabel:    "選択"
+    });
+});
+  $(function()
+{
+    $("#order_user_ids_table").pickList({
+     sourceListLabel:    "一覧",
+     targetListLabel:    "選択"
+    });
+});
+</script>

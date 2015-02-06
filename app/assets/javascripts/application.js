@@ -29,4 +29,4 @@
 //= require jquery-picklist
 
 //= require sb-admin/sb-admin
-
+//= require jquery_nested_form
