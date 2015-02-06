@@ -23,7 +23,7 @@
   
     <div class="form-group">
       <%= f.label :destgroup_ids, '依頼先' %><br>
-      <select id="order_destgroup_ids" name="order[destgroup_ids][]" multiple="multiple">
+      <select id="order_destgroup_ids" name="order[destgroup_ids][]" multiple="multiple" required="true">
         <% @destgroup.each do |group| %>
           <% if group.orders.exists?(@order.id) %>
             <option value=<%= group.id %> selected="selected"><%= group.name %></option>
@@ -39,7 +39,8 @@
       <% unless @order.new_record?%>
         <% @order_all.each do |o| %>
           <% if o.document_url.present? %>
-            <%= File.basename o.document_url%><br>
+            <% name = File.basename o.document_url%>
+            <%= link_to(name, o.document_url) %>
           <% end %>
         <% end %>  
       <% else %>
@@ -54,7 +55,7 @@
     <% unless @order.new_record? %>
     <div class="form-group">
       <%= f.label :delivery_date, '予定納期' %><br>
-      <%= f.date_select :delivery_date %>
+      <%= f.date_select :delivery_date, :include_blank => true, :start_year => Date.today.year %>
     </div>
     <% end %>
   
@@ -94,11 +95,14 @@
       <%= f.label :web_url %><br>
       <%= f.text_field :web_url, class: 'form-control' %>
     </div>
-  
+    
+    <% if @order.new_record? %>
     <div class="form-group">
       <%= f.label :order_comment, 'コメント' %><br>
       <%= f.text_area :order_comment, class: 'form-control', rows: "3" %>
     </div>
+    <% end %>
+    
   </div>
 </div>
 

@@ -13,12 +13,14 @@
             <th>依頼日</th>
             <th>予定納期</th>
             <th>依頼者</th>
+            <th></th>
+            <th></th>
             <th colspan="3"></th>
           </tr>
         </thead>
 
         <tbody>
-        <% @orders.each do |order| %>
+        <% @orders.reverse_each do |order| %>
           <tr>
             <td><%= order.contract_number %></td>
             <td><%= order.customer_number %></td>
@@ -46,6 +48,7 @@
 <script>
 $(document).ready(function() {
    $('#table_order').DataTable({
+     "order": [[ 0, "desc" ]],
      aoColumns:[
       null,
       null,
