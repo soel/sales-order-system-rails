@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Emails</th>
             <th></th>
             <th></th>
             <th colspan="3"></th>
@@ -17,8 +18,13 @@
           <% @destgroups.each do |destgroup| %>
           <tr>
             <td><%= destgroup.name %></td>
-            <td><%= link_to 'Edit', edit_destgroup_path(destgroup) %></td>
-            <td><%= link_to 'Destroy', destgroup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td>
+              <% destgroup.destemails.each do |email| %>
+                <%= email.email%>&nbsp;
+              <% end %>
+            </td>
+            <td><%= link_to '編集', edit_destgroup_path(destgroup) %></td>
+            <td><%= link_to '削除', destgroup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
           <% end %>
         </tbody>
@@ -35,6 +41,7 @@ $(document).ready(function() {
      "ordering": false,
      aoColumns:[
       null,
+      { "bSearchable": false },
       { "bSearchable": false },
       { "bSearchable": false }
      ]
