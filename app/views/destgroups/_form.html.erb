@@ -26,7 +26,6 @@
     <div class="form-group">
       <label>メールアドレスの選択</label>
         <select id="destemail_ids" name="destgroup[destemail_ids][]" multiple="multiple">
-        <% @destemails = Destemail.all%>
           <% @destemails.each do |mail| %>
             <% if mail.destgroups.exists?(@destgroup.id) %>
               <option value=<%= mail.id %> selected="selected"><%= mail.email %></option>

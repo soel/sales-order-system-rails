@@ -26,7 +26,8 @@ class DestgroupsController < ApplicationController
     if @destgroup.save
       redirect_to destgroups_path
     else
-      respond_with(@destgroup)
+      #respond_with(@destgroup)
+      render 'new', locals: {:@destemails => Destemail.all}
     end
   end
 
@@ -34,7 +35,8 @@ class DestgroupsController < ApplicationController
     if @destgroup.update(destgroup_params)
       redirect_to destgroups_path
     else
-      respond_with(@destgroup)
+      #respond_with(@destgroup)
+      render 'edit', locals: {:@destemails => Destemail.all}
     end
   end
 
