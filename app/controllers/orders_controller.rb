@@ -25,9 +25,10 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @owner = @order.users[0]
     @destgroup = Destgroup.all
-    @user_select = User.where.not(id: @user.id)
+    @user_select = User.where.not(id: @owner.id)
+    #@user_select = User.all
     @order_all = @order.order_attachments.all
   end
 

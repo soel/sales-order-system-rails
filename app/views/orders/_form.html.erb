@@ -65,6 +65,10 @@
       <%= f.check_box 'user_ids', {:name => 'order[user_ids][]', :checked => true }, @user.id, nil %>
       <%= @user.username %>
     </div>
+  <% else %>
+      <%= f.label :user_ids, '作成者' %>
+      <%= f.hidden_field 'user_ids', {:name => 'order[user_ids][]', :value => @owner.id} %>
+      <%= @owner.username %>
   <% end %>
   
   <div class="field">
