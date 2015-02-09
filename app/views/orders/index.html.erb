@@ -3,6 +3,7 @@
     <div class='col-lg-12'>
       <h1 class='page-header'>収容一覧</h1>
 
+      <div class="table-responsive">
       <table class="table" id="table_order">
         <thead>
           <tr>
@@ -39,6 +40,7 @@
         <% end %>
         </tbody>
       </table>
+      </div>
 
       <%= link_to 'New Order', new_order_path %>
 
@@ -48,7 +50,7 @@
 <script>
 $(document).ready(function() {
    $('#table_order').DataTable({
-     "order": [[ 0, "desc" ]],
+     "order": [[ 4, "desc" ]],
      aoColumns:[
       null,
       null,
