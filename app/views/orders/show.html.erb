@@ -76,6 +76,7 @@
       <h3 class='page-header'>コメント</h3>
       
       <% if @order.order_comment.present? %>
+        <%= @order.users[0].username %>
         <div class="well">
           <%= @order.order_comment %>
         </div>
