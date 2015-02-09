@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     
     CommentMailer.comment_email(tomail, @order, @user).deliver
     
-    redirect_to order_path(@order)
+    redirect_to order_path(@order, :anchor => 'foot')
   end
   
   private
