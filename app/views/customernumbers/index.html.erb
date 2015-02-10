@@ -1,0 +1,40 @@
+<div id='page-wrapper'>
+  <div class='row'>
+    <div class='col-lg-8'>
+      <h1 class='page-header'>顧客番号一覧</h1>
+
+      <table class="table" id="table_custnum">
+        <thead>
+          <tr>
+            <th>顧客番号</th>
+            <th>顧客名</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @customernumbers.each do |customernumber| %>
+          <tr>
+            <td><%= customernumber.customer_num %></td>
+            <td><%= customernumber.name %></td>
+            <td><%= link_to '編集', edit_customernumber_path(customernumber) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= link_to '顧客番号登録', new_customernumber_path , :class => "btn btn-outline btn-info" %>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+   $('#table_custnum').DataTable({
+     aoColumns:[
+      null,
+      null,
+      { "bSearchable": false }
+     ]
+   });
+});
+</script>

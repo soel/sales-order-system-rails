@@ -1,0 +1,22 @@
+<div id='page-wrapper'>
+  <p id="notice"><%= notice %></p>
+
+  <div class='row'>
+    <div class='col-lg-4'>
+
+      <p>
+        <strong>Customer num:</strong>
+        <%= @customernumber.customer_num %>
+      </p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @customernumber.name %>
+      </p>
+
+      <%= link_to 'Edit', edit_customernumber_path(@customernumber) %> |
+      <%= link_to 'Back', customernumbers_path %>
+      
+    </div>
+  </div>
+</div>

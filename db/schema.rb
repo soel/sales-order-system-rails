@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203092448) do
+ActiveRecord::Schema.define(version: 20150210061918) do
 
   create_table "comment_attachments", force: true do |t|
     t.integer  "comment_id"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20150203092448) do
 
   add_index "comments", ["order_id"], name: "index_comments_on_order_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "customernumbers", force: true do |t|
+    t.integer  "customer_num"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "destemails", force: true do |t|
     t.string   "email"
