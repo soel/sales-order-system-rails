@@ -85,7 +85,7 @@
       <% if @order.order_comment.present? %>
         <%= @order.users[0].username %>
         <div class="well">
-          <%= @order.order_comment %>
+          <%= simple_format(@order.order_comment) %>
         </div>
       <% end %>
 
@@ -96,7 +96,7 @@
         <%= User.find(comment.user_id).username %>
         <div class="well">
           <p>
-            <%= comment.body %>
+            <%= simple_format(comment.body) %>
           </p>
         <% if comment.comment_attachments.present? %>
           <% comment.comment_attachments.each do |a| %>
