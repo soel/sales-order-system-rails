@@ -35,6 +35,7 @@ gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'jquery-datatables-rails', '~> 3.1.1'
 gem 'rmagick'
+gem 'unicorn'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
