@@ -8,11 +8,11 @@ class OrderEditMailer < ActionMailer::Base
     @url = 'http://localhost:3000/orders/' + order.id.to_s
     
     if change_status_value.present?
-      @status = change_status_value[1]
+      @status = change_status_value[0].to_s + " => " + change_status_value[1].to_s
     end
     
     if change_delivery_date_value.present?
-      @delivery_date = change_delivery_date_value[1]
+      @delivery_date = change_delivery_date_value[0].to_s + " => " + change_delivery_date_value[1].to_s
     end
     
     mail to: tomail, subject: sub
