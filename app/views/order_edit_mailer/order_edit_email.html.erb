@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <p>
+      これはテストメールです<br>
+      <br>
+      各位<br><br>
+      下記のステータスに変更されました<br><br>
+      <%if @status %>
+        ステータス: <%= @status %><br><br />
+      <%end%>
+      <%if @delivery_date %>
+        予定納期: <%= @delivery_date %><br><br />
+      <%end%>
+      
+      <%= @url %><br />
+      <br />
+      変更者: <%= @user %>
+    </p>
+  </body>
+</html>

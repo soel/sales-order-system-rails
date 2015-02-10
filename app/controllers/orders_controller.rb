@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-   before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -25,11 +25,13 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    @user = current_user
     @owner = @order.users[0]
     @destgroup = Destgroup.all
     @user_select = User.where.not(id: @owner.id)
     #@user_select = User.all
     @order_all = @order.order_attachments.all
+    
   end
 
   def create
@@ -46,7 +48,36 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order.update(order_params)
+    @user = current_user
+    @order.attributes = order_params
+    
+    change_status = @order.status_changed?
+    change_status_value = @order.status_change
+    change_delivery_date = @order.delivery_date_changed?
+    change_delivery_date_value = @order.delivery_date_change
+    
+    if @order.update(order_params)
+      
+      if change_status or change_delivery_date
+       
+        commenter = @order.comments.pluck(:user_id)
+        commenter.uniq!
+    
+        users = []
+        commenter.each do | c |
+          users << User.find(c).email
+        end
+    
+        ordermember = @order.users.pluck(:email)
+        ordergroup = @order.destemails.pluck(:email)
+    
+        tomail = users + ordermember + ordergroup
+        tomail.uniq!
+    
+        OrderEditMailer.order_edit_email(tomail, @order, @user, change_status_value, change_delivery_date_value).deliver
+      end
+    end
+    
     respond_with(@order)
   end
 
