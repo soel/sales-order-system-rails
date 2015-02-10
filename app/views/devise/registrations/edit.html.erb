@@ -22,7 +22,7 @@
               <%= f.label :remove_avatar %>
               <%= f.check_box :remove_avatar %><br />
             <% end %>
-            <%= f.label :avatar %>
+            <%= f.label :avatar %><i>(jpg jpeg gif png のみです)</i>
             <%= f.file_field :avatar, :type => "file" %><br />
             <%= f.hidden_field :avatar_cache %>
           </div>

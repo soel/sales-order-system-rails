@@ -25,7 +25,11 @@
                 <!-- /.dropdown -->
                 <li>
                   <% if user_signed_in? %> 
-                    Logged in as <strong><%= current_user.username %></strong>.
+                    Logged in as <strong><%= current_user.username %>
+                      <% if current_user.avatar.url.present? %>
+                        &nbsp;<%= image_tag current_user.avatar.thumb.url %>
+                      <% end %>
+                    </strong>
                   <% end %>
                 </li>
                 <li class="dropdown">
