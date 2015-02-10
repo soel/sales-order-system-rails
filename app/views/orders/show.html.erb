@@ -83,6 +83,9 @@
       <h3 class='page-header'>コメント</h3>
       
       <% if @order.order_comment.present? %>
+        <% if @order.users[0].avatar.url.present? %>
+          <%= image_tag @order.users[0].avatar.thumb.url %>
+        <% end %>
         <%= @order.users[0].username %>
         <div class="well">
           <%= simple_format(@order.order_comment) %>
