@@ -105,10 +105,11 @@
           <% comment.comment_attachments.each do |a| %>
             <%if a.document_url.present?%>
               <% commname = File.basename a.document_url%>
-              <p class="fa fa-paperclip"><%= link_to(commname, a.document_url) %></p>
+              <p class="fa fa-paperclip"><%= link_to(commname, a.document_url) %></p><br>
             <% end %>
           <% end %>
         <% end %>
+        <small><%= comment.created_at %></small>
         </div>
       <% end %>
 
