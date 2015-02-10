@@ -58,6 +58,9 @@
 
       <p>
         <strong>作成者:</strong>
+        <% if @order.users[0].avatar.url.present? %>
+          <%= image_tag @order.users[0].avatar.thumb.url %>
+        <% end %>
         <%= @order.users[0].username %>
       </p>
 
@@ -65,6 +68,9 @@
         <strong>メンバー:</strong>
         <% if @order.users.length >= 2 %>
           <% @order.users[1..-1].each do |member| %>
+            <% if member.avatar.url.present? %>
+              <%= image_tag member.avatar.thumb.url %>
+            <% end %>
             <%= member.username %>
           <% end %>
         <% end %>
@@ -84,6 +90,9 @@
       <% end %>
 
       <% @order.comments.each do |comment| %>
+        <% if User.find(comment.user_id).avatar.url.present? %>
+          <%= image_tag User.find(comment.user_id).avatar.thumb.url%>
+        <% end %>
         <%= User.find(comment.user_id).username %>
         <div class="well">
           <p>
@@ -106,6 +115,9 @@
       <h4 class='page-header'>コメントを追加</h3>
       <%= form_for( [@order, comm = @order.comments.build] ) do |f| %>
       <p>
+        <% if @user.avatar.url.present? %>
+          <%= image_tag @user.avatar.thumb.url %>
+        <% end %>
         <%= @user.username %><br />
         <%= f.hidden_field :user_id, :value => @user.id %>
         <%= f.text_area :body, class: 'form-control', rows: "8" %>
