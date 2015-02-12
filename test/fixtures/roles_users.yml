@@ -1,0 +1,7 @@
+kanbara_admin:
+  user_id: 1
+  role_id: 1
+  
+kanbara_superuser:
+  user_id: 1
+  role_id: 2
