@@ -10,10 +10,12 @@
       各位<br><br>
       下記のステータスに変更されました<br><br>
       <%if @status %>
-        ステータス: <%= @status %><br><br />
+        ステータス:<br>
+        <%= @status %><br><br />
       <%end%>
       <%if @delivery_date %>
-        予定納期: <%= @delivery_date %><br><br />
+        予定納期:<br>
+        <%= @delivery_date %><br><br />
       <%end%>
       
       <%= @url %><br />
