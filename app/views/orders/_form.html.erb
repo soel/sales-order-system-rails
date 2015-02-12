@@ -11,6 +11,16 @@
     </div>
     <% end %>
 
+    <% flash.each do |key, value| %>
+      <div class="alert alert-danger alert-dismissable">
+        <ul>
+        <% value.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
     <div class="form-group">
       <%= f.label :contract_number, '契約番号' %><br>
       <%= f.number_field :contract_number, class: 'form-control' %>

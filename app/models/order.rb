@@ -8,4 +8,7 @@ class Order < ActiveRecord::Base
   has_many :comments
   
   has_many :destemails, through: :destgroups
+  
+  validates :contract_number, numericality: { only_integer: true }
+  validates :customer_number, numericality: { only_integer: true }
 end

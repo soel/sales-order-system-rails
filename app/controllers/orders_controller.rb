@@ -36,15 +36,19 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.save
+    if @order.save
+      user = @order.users.pluck(:email)
+      grmail = @order.destemails.pluck(:email)
+      tomail = user + grmail
     
-    user = @order.users.pluck(:email)
-    grmail = @order.destemails.pluck(:email)
-    tomail = user + grmail
-    
-    OrderMailer.order_email(tomail, @order).deliver
-    
-    respond_with(@order)
+      OrderMailer.order_email(tomail, @order).deliver
+      
+      respond_with(@order)
+    else
+      #respond_with(@order)
+      flash[:alert] = @order.errors.full_messages
+      redirect_to action: :new
+    end
   end
 
   def update
@@ -78,7 +82,8 @@ class OrdersController < ApplicationController
       end
     end
     
-    respond_with(@order)
+    flash[:alert] = @order.errors.full_messages
+    redirect_to action: :edit
   end
 
   def destroy
