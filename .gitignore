@@ -17,3 +17,6 @@
 
 # Ignore uploadfiles
 /public/uploads
+
+# Ignore asset pipeline
+/public/assets
