@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
-  resources :customernumbers
+  resources :customernumbers, except: [:destroy]
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :comment_attachments
 
   resources :order_attachments
 
-  resources :orders do
+  resources :orders, except: [:destroy] do
     resources :comments
   end
 
@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   
   get 'home/index'
 
-  get 'home/show'
 
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
