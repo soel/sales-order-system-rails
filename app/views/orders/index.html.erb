@@ -30,7 +30,15 @@
                 <%= group.name %>
               <% end %>
             </td>
-            <td><%= order.status %></td>
+            <td>
+              <% if order.status == '確認中' %>
+                <B class="text-danger"><%= order.status %></B>
+              <% elsif order.status == '着手中' %>
+                <B class="text-warning"><%= order.status %></B>
+              <% elsif order.status == '作業完了' %>
+                <B class="text-success"><%= order.status %></B>
+              <% end %>
+            </td>
             <td><%= order.created_at %></td>
             <td><%= order.delivery_date %></td>
             <td><%= order.users[0].username%></td>
