@@ -1,4 +1,5 @@
 class DestgroupsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_destgroup, only: [:show, :edit, :update, :destroy]
   before_action :set_destemail, only: [:new, :edit]
 

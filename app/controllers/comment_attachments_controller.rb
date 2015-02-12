@@ -1,4 +1,5 @@
 class CommentAttachmentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comment_attachment, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
