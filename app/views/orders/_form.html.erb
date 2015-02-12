@@ -12,6 +12,7 @@
     <% end %>
 
     <% flash.each do |key, value| %>
+      <%if key == "alert"%>
       <div class="alert alert-danger alert-dismissable">
         <ul>
         <% value.each do |message| %>
@@ -19,6 +20,7 @@
         <% end %>
         </ul>
       </div>
+      <% end %>
     <% end %>
     
     <div class="form-group">
@@ -130,16 +132,12 @@
 <script>
   $(function()
 {
-    $("#order_destgroup_ids").pickList({
-     sourceListLabel:    "一覧",
-     targetListLabel:    "選択"
+    $("#order_destgroup_ids").bootstrapDualListbox({
     });
 });
   $(function()
 {
-    $("#order_user_ids_table").pickList({
-     sourceListLabel:    "一覧",
-     targetListLabel:    "選択"
+    $("#order_user_ids_table").bootstrapDualListbox({
     });
 });
 </script>

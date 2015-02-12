@@ -26,7 +26,7 @@
 //= require sb-admin/raphael-2.1.0.min
 //= require sb-admin/morris
 //= require jquery.ui.widget
-//= require jquery-picklist
+//= require jquery.bootstrap-duallistbox
 
 //= require sb-admin/sb-admin
 //= require jquery_nested_form
