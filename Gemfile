@@ -26,16 +26,16 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-gem 'devise'
-gem 'carrierwave'
-gem 'nested_form'
-gem 'cancancan'
-gem 'rails_admin'
-gem 'bootstrap-sass'
-gem 'kaminari'
-gem 'jquery-datatables-rails', '~> 3.1.1'
-gem 'rmagick'
-gem 'unicorn'
+gem 'devise', '3.4.1'
+gem 'carrierwave', '0.10.0'
+gem 'nested_form', '0.3.2'
+gem 'cancancan', '1.10.1'
+gem 'rails_admin', '0.6.6'
+gem 'bootstrap-sass', '3.1.1.0'
+gem 'kaminari', '0.16.2'
+gem 'jquery-datatables-rails', '3.1.1'
+gem 'rmagick', '2.13.4'
+gem 'unicorn', '4.8.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
