@@ -5,7 +5,8 @@ class OrderEditMailer < ActionMailer::Base
     sub = "収容依頼内容の変更がありました " + order.contract_number.to_s + " " + order.customer_number.to_s
     
     @user = user.username
-    @url = 'http://localhost:3000/orders/' + order.id.to_s
+    host = `hostname`.strip
+    @url = 'http://' + host + '/orders/' + order.id.to_s
     
     if change_status_value.present?
       @status = change_status_value[0].to_s + " => " + change_status_value[1].to_s

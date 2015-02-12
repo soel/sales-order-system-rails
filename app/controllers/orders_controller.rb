@@ -80,10 +80,13 @@ class OrdersController < ApplicationController
     
         OrderEditMailer.order_edit_email(tomail, @order, @user, change_status_value, change_delivery_date_value).deliver
       end
-    end
+      
+      respond_with(@order)
+    else
     
-    flash[:alert] = @order.errors.full_messages
-    redirect_to action: :edit
+      flash[:alert] = @order.errors.full_messages
+      redirect_to action: :edit
+    end
   end
 
   def destroy

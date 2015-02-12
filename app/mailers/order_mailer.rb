@@ -4,7 +4,8 @@ class OrderMailer < ActionMailer::Base
   def order_email(tomail, order)
     sub = "収容依頼 " + order.contract_number.to_s + " " + order.customer_number.to_s
     @owner = order.users[0].username
-    @url = 'http://localhost:3000/orders/' + order.id.to_s
+    host = `hostname`.strip
+    @url = 'http://' + host + '/orders/' + order.id.to_s
     
     @contract = order.contract_number
     @customer = order.customer_number
