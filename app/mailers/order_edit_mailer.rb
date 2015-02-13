@@ -1,5 +1,6 @@
 class OrderEditMailer < ActionMailer::Base
-  default from: "from@example.com"
+  host = `hostname`.strip
+  default from: "system@" + host
   
   def order_edit_email(tomail, order, user, change_status_value, change_delivery_date_value)
     sub = "収容依頼内容の変更がありました " + order.contract_number.to_s + " " + order.customer_number.to_s

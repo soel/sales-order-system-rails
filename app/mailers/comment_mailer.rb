@@ -1,5 +1,6 @@
 class CommentMailer < ActionMailer::Base
-  default from: "from@example.com"
+  host = `hostname`.strip
+  default from: "system@" + host
   
   def comment_email(tomail, order, user)
     sub = "コメントがありました " + order.contract_number.to_s + " " + order.customer_number.to_s

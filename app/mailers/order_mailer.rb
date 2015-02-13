@@ -1,5 +1,6 @@
 class OrderMailer < ActionMailer::Base
-  default from: "from@example.com"
+  host = `hostname`.strip
+  default from: "system@" + host
   
   def order_email(tomail, order)
     sub = "収容依頼 " + order.contract_number.to_s + " " + order.customer_number.to_s
