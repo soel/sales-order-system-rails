@@ -37,6 +37,7 @@ gem 'jquery-datatables-rails', '3.1.1'
 gem 'rmagick', '2.13.4'
 gem 'unicorn', '4.8.3'
 
+gem 'pg', '0.18.1'   group: :production
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
