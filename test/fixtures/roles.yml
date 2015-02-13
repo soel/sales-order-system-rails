@@ -6,4 +6,4 @@ admin:
 
 superuser:
   id: 2
-  name: superuser
+  name: superadmin

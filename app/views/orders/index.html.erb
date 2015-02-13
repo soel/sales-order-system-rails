@@ -40,7 +40,12 @@
             </td>
             <td><%= order.created_at %></td>
             <td><%= order.delivery_date %></td>
-            <td><%= order.users[0].username%></td>
+            <td>
+              <% if order.users[0].avatar.url.present? %>
+                <%= image_tag order.users[0].avatar.thumb.url %>
+              <% end %>
+              <%= order.users[0].username%>
+            </td>
             <td><%= link_to '詳細', order %></td>
           </tr>
         <% end %>
