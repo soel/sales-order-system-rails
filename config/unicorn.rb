@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-listen "127.0.0.1:3000"
+#listen "127.0.0.1:3000"
+
+ROOT = File.dirname(File.dirname(__FILE__))
 
 pid "tmp/pids/unicorn.pid"
-listen "/tmp/unicorn.sock"
+listen "#{ROOT}/tmp/unicorn.sock"
 
 worker_processes 2
 
@@ -11,7 +13,6 @@ timeout 15
 
 preload_app true
 
-ROOT = File.dirname(File.dirname(__FILE__))
 stdout_path = "#{ROOT}/log/unicorn-stdout.log"
 stderr_path = "#{ROOT}/log/unicorn-stderr.log"
 
