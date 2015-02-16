@@ -1,6 +1,8 @@
 set :output, 'log/crontab.log'
 
-every 1.hours do
+set :environment, :production
+
+every :hour do
   runner "Sesson.sweep"
 end
 
