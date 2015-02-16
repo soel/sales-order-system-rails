@@ -26,5 +26,5 @@ production:
   encoding: utf8
   pool: 5
   database: soweb_production
-  username: soweb
+  username: <%= ENV['RAILS_DATABASE_USERNAME'] %>
   password: <%= ENV['RAILS_DATABASE_PASSWORD'] %>
