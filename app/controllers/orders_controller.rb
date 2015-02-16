@@ -46,6 +46,7 @@ class OrdersController < ApplicationController
       respond_with(@order)
     else
       #respond_with(@order)
+      @order.attributes = order_params
       flash[:alert] = @order.errors.full_messages
       redirect_to action: :new
     end

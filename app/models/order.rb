@@ -9,6 +9,13 @@ class Order < ActiveRecord::Base
   
   has_many :destemails, through: :destgroups
   
-  validates :contract_number, numericality: { only_integer: true }
-  validates :customer_number, numericality: { only_integer: true }
+  validates :contract_number, numericality: { only_integer: true }, presence: true
+  validates :customer_number, numericality: { only_integer: true }, presence: true
+  
+  validate :has_destgroups?
+  
+  def has_destgroups?
+    errors[:base] << "依頼先が設定されていません" if self.destgroups.blank?
+  end
+  
 end

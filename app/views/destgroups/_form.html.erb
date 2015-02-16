@@ -16,7 +16,7 @@
 <div class='row'>
   <div class='col-lg-4'>
     <div class="form-group">
-      <%= f.text_field :name, class: 'form-control', autofocus: true, :placeholder => "グループ名"%>
+      <%= f.text_field :name, class: 'form-control', autofocus: true, :placeholder => "グループ名", required: true%>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
   <div class='col-lg-8'>
     <div class="form-group">
       <label>メールアドレスの選択</label>
-        <select id="destemail_ids" name="destgroup[destemail_ids][]" multiple="multiple">
+        <select id="destemail_ids" name="destgroup[destemail_ids][]" multiple="multiple" required="true">
           <% @destemails.each do |mail| %>
             <% if mail.destgroups.exists?(@destgroup.id) %>
               <option value=<%= mail.id %> selected="selected"><%= mail.email %></option>
