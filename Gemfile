@@ -39,6 +39,7 @@ gem 'unicorn', '4.8.3'
 
 gem 'mysql2', '0.3.17',   group: :production
 gem 'activerecord-session_store'
+gem 'whenever'
 
 gem 'pry-rails', group: [:development, :test]
 gem 'hirb', group: [:development, :test]
