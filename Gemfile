@@ -38,11 +38,16 @@ gem 'rmagick', '2.13.4'
 gem 'unicorn', '4.8.3'
 
 gem 'mysql2', '0.3.17',   group: :production
+
+gem 'pry-rails', group: [:development, :test]
+gem 'hirb', group: [:development, :test]
+gem 'hirb-unicode', group: [:development, :test]
+gem 'better_errors', group: [:development, :test]
+gem 'binding_of_caller', group: [:development, :test]
+gem 'rails-erd', group: [:development, :test]
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
