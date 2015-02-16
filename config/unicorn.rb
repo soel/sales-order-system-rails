@@ -5,7 +5,7 @@
 ROOT = File.dirname(File.dirname(__FILE__))
 
 pid "tmp/pids/unicorn.pid"
-listen "#{ROOT}/tmp/unicorn.sock"
+listen "#{ROOT}/tmp/sockets/unicorn.sock"
 
 worker_processes 2
 
