@@ -1,5 +1,5 @@
 <div class='row'>
-  <%= nested_form_for(@order) do |f| %>
+  <%= nested_form_for(@order, :html => {'data-parsley-validate' => '', 'parsley-use-html5-constraints' => false}) do |f| %>
   <div class='col-lg-7'>
     <% if @order.errors.any? %>
     <div class="alert alert-danger alert-dismissable">
@@ -25,12 +25,13 @@
     
     <div class="form-group">
       <%= f.label :contract_number, '契約番号' %><br>
-      <%= f.number_field :contract_number, class: 'form-control' , required: true %>
+      <%= f.text_field :contract_number, class: 'form-control', 'data-parsley-type' => 'integer', 'required' => '' %>
     </div>
     
     <div class="form-group">
       <%= f.label :customer_number, '顧客番号' %><br>
-      <%= f.number_field :customer_number, class: 'form-control' , required: true %>
+      <%= f.text_field :customer_number, class: 'form-control', 'data-parsley-type' => 'integer', 'required' => '' %>
+      
     </div>
   
     <div class="form-group">
@@ -67,7 +68,7 @@
     <% unless @order.new_record? %>
     <div class="form-group">
       <%= f.label :delivery_date, '予定納期' %><br>
-      <%= f.date_select :delivery_date, :include_blank => true, :start_year => Date.today.year %>
+      <%= f.text_field :delivery_date %>
     </div>
     <% end %>
   
@@ -134,10 +135,12 @@
 {
     $("#order_destgroup_ids").bootstrapDualListbox({
     });
-});
-  $(function()
-{
     $("#order_user_ids_table").bootstrapDualListbox({
     });
+    $("#order_delivery_date").datepicker({
+      dateFormat: 'yy/mm/dd'
+    });
+    $('#new_order').parsley();
 });
+
 </script>

@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui/datepicker
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
@@ -27,6 +28,8 @@
 //= require sb-admin/morris
 //= require jquery.ui.widget
 //= require jquery.bootstrap-duallistbox
-
 //= require sb-admin/sb-admin
 //= require jquery_nested_form
+//= require parsley
+//= require parsley.remote
+//= require parsley.i18n.ja

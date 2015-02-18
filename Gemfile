@@ -38,8 +38,11 @@ gem 'rmagick', '2.13.4'
 gem 'unicorn', '4.8.3'
 
 gem 'mysql2', '0.3.17',   group: :production
-gem 'activerecord-session_store'
-gem 'whenever'
+
+gem 'activerecord-session_store', '0.1.1'
+gem 'whenever', '0.9.4'
+gem 'jquery-ui-rails', '5.0.3'
+gem 'parsley-rails', '2.0.7.0'
 
 gem 'pry-rails', group: [:development, :test]
 gem 'hirb', group: [:development, :test]
