@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery-ui/datepicker
 //= require jquery_ujs
+//= require parsley
+//= require parsley.remote
+//= require parsley.i18n.ja
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require dataTables/jquery.dataTables
@@ -30,6 +33,3 @@
 //= require jquery.bootstrap-duallistbox
 //= require sb-admin/sb-admin
 //= require jquery_nested_form
-//= require parsley
-//= require parsley.remote
-//= require parsley.i18n.ja

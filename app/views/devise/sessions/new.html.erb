@@ -6,12 +6,12 @@
           <h3 class="panel-title">Log In</h3>
         </div>
         <div class="panel-body">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= form_for(resource, :html => {'data-parsley-validate' => '', 'parsley-use-html5-constraints' => false}, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-group">
-            <%= f.email_field :email, class: 'form-control', autofocus: true, :placeholder => "E-mail", :type => "email" %>
+            <%= f.email_field :email, class: 'form-control', autofocus: true, :placeholder => "E-mail", :type => "email", 'required' => '' %>
           </div>
           <div class="form-group">
-            <%= f.password_field :password, class: 'form-control', :placeholder => "Password", :type => "password", autocomplete: "off" %>
+            <%= f.password_field :password, class: 'form-control', :placeholder => "Password", :type => "password", autocomplete: "off", 'required' => '' %>
           </div>
           <% if devise_mapping.rememberable? -%>
           <div class="checkbox">

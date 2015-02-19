@@ -1,6 +1,6 @@
 <div class='row'>
   <div class='col-lg-6'>
-  <%= form_for(@customernumber) do |f| %>
+  <%= form_for(@customernumber, :html => {'data-parsley-validate' => ''}) do |f| %>
     <% if @customernumber.errors.any? %>
     <div class="alert alert-danger alert-dismissable">
       <ul>
@@ -10,21 +10,18 @@
       </ul>
     </div>
   <% end %>
-  </div>
-</div>
 
-<div class='row'>
-  <div class='col-lg-4'>
     <div class="form-group">
       <%= f.label :customer_num, '顧客番号' %><br>
-      <%= f.number_field :customer_num, class: 'form-control', required: true %>
+      <%= f.text_field :customer_num, class: 'form-control', 'data-parsley-type' => 'integer', 'required' => '' %>
     </div>
     <div class="form-group">
       <%= f.label :name, '顧客名' %><br>
-      <%= f.text_field :name, class: 'form-control', required: true %>
+      <%= f.text_field :name, class: 'form-control', 'required' => '' %>
     </div>
   </div>
 </div>
+
 <div class='row'>
   <div class='col-lg-2'>
     <div class="actions">
@@ -36,4 +33,3 @@
   </div>
   <% end %>
   </div>
-</div>

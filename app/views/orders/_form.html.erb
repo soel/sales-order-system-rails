@@ -131,7 +131,7 @@
   <% end %>
 </div>
 <script>
-  $(function()
+$(document).ready(function()
 {
     $("#order_destgroup_ids").bootstrapDualListbox({
     });
@@ -140,7 +140,7 @@
     $("#order_delivery_date").datepicker({
       dateFormat: 'yy/mm/dd'
     });
-    $('#new_order').parsley();
+    
 });
 
 </script>

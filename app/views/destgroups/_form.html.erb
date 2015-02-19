@@ -1,6 +1,6 @@
 <div class='row'>
-  <div class='col-lg-6'>
-  <%= form_for(@destgroup) do |f| %>
+  <div class='col-lg-7'>
+  <%= form_for(@destgroup, :html => {'data-parsley-validate' => '', 'parsley-use-html5-constraints' => false}) do |f| %>
     <% if @destgroup.errors.any? %>
     <div class="alert alert-danger alert-dismissable">
       <ul>
@@ -10,19 +10,12 @@
       </ul>
     </div>
     <% end %>
-  </div>
-</div>
 
-<div class='row'>
-  <div class='col-lg-4'>
     <div class="form-group">
-      <%= f.text_field :name, class: 'form-control', autofocus: true, :placeholder => "グループ名", required: true%>
+      <%= f.text_field :name, class: 'form-control', autofocus: true, :placeholder => "グループ名", 'required' => ''%>
     </div>
-  </div>
-</div>
 
-<div class='row'>
-  <div class='col-lg-8'>
+
     <div class="form-group">
       <label>メールアドレスの選択</label>
         <select id="destemail_ids" name="destgroup[destemail_ids][]" multiple="multiple" required="true">
@@ -35,15 +28,25 @@
           <% end %>
         </select>
     </div>
+  </div>
+</div>
+  
+<div class='row'>
+  <div class='col-lg-2'>
     <div class="actions">
       <%= f.submit '登録する', class: 'btn btn-success' %>
     </div>
-    <div class="top-buffer">
-      <%= link_to '新しくメールアドレス登録する', new_destemail_path, :class => "btn btn-outline btn-default" %>
-    </div>
+  </div>
+  <div class='col-lg-2 col-lg-offset-1'>
+    <%= link_to 'キャンセル', destemails_path, class: 'btn btn-danger' %>
   </div>
 </div>
 
+<div class='row'>
+  <div class="top-buffer">
+    <%= link_to '新しくメールアドレス登録する', new_destemail_path, :class => "btn btn-outline btn-default" %>
+  </div>
+</div>
 
 <% end %>
 <script>
