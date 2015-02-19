@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
     @user_select = User.where.not(id: @user.id)
     @destgroup = Destgroup.all
     @order = Order.new
+    @template = CommentTemplate.all
     @order_attachment = @order.order_attachments.build
     respond_with(@order)
   end

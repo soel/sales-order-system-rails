@@ -109,6 +109,14 @@
       <%= f.text_field :web_url, class: 'form-control' %>
     </div>
     
+    <select name="select">
+      <option value="#">必要な場合選択してください</option>
+      <% @template.each do |template|%>
+      <option value=<%= template.body.gsub(/\r\n/, "kaigyo") %>><%= template.name %></option>
+      <% end%>
+    </select>
+    <input type="button" onclick="template();" value="テンプレート">
+    
     <% if @order.new_record? %>
     <div class="form-group">
       <%= f.label :order_comment, 'コメント' %><br>
@@ -130,7 +138,7 @@
   </div>
   <% end %>
 </div>
-<script>
+<script type="text/javascript">
 $(document).ready(function()
 {
     $("#order_destgroup_ids").bootstrapDualListbox({
@@ -143,7 +151,10 @@ $(document).ready(function()
       showMonthAfterYear: true,
       monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
     });
-    
 });
-
+function template() {
+  var SelectValue = $('select[name="select"]').val();
+  val = SelectValue.replace(/kaigyo/g,'\n')
+  $("#order_order_comment").val(val);
+}
 </script>

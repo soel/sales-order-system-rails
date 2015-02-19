@@ -1,0 +1,21 @@
+<div id='page-wrapper'>
+  <p id="notice"><%= notice %></p>
+
+  <div class='row'>
+    <div class='col-lg-6'>
+    <p>
+      <strong>テンプレート名:</strong><br>
+      <%= @comment_template.name %>
+    </p>
+
+      <strong>テンプレート文:</strong>
+      <div class="well">
+        <%= simple_format(@comment_template.body) %>
+      </div>
+
+      <%= link_to '編集', edit_comment_template_path(@comment_template), class: 'btn btn-primary' %> 
+      <%= link_to '戻る', comment_templates_path , class: 'btn btn-danger'%>
+
+    </div>
+  </div>
+</div>

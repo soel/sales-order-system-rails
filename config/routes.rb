@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :comment_templates
+
   resources :customernumbers, except: [:destroy]
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

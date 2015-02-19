@@ -1,0 +1,35 @@
+<div id='page-wrapper'>
+  <div class='row'>
+    <div class='col-lg-8'>
+      <h1 class='page-header'>テンプレート一覧</h1>
+
+      <table class="table" id="table_comm">
+        <thead>
+          <tr>
+            <th>テンプレート名</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+      <tbody>
+        <% @comment_templates.each do |comment_template| %>
+        <tr>
+          <td><%= comment_template.name %></td>
+          <td><%= link_to '詳細', comment_template %></td>
+          <td><%= link_to '編集', edit_comment_template_path(comment_template) %></td>
+          <td><%= link_to '削除', comment_template, method: :delete, data: { confirm: '削除して良いですか?' } %></td>
+        </tr>
+        <% end %>
+      </tbody>
+      </table>
+
+      <br>
+
+      <%= link_to '新しいテンプレートを作成', new_comment_template_path, :class => "btn btn-outline btn-info" %>
+
+    </div>
+  </div>
+</div>
