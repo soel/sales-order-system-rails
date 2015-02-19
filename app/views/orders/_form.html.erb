@@ -110,20 +110,18 @@
     </div>
     
     <% if @order.new_record? %>
+    <div class="form-group">
+      <%= f.label :order_comment, 'コメント' %><br>
     <select name="select">
-      <option value="#">必要な場合選択してください</option>
+      <option value="">必要な場合選択してください</option>
       <% if @template.present? %>
       <% @template.each do |template|%>
       <option value=<%= template.body.gsub(/\r\n/, "kaigyo") %>><%= template.name %></option>
       <% end %>
       <% end %>
     </select>
-    <input type="button" onclick="template();" value="テンプレート">
-    <% end %>
-    
-    <% if @order.new_record? %>
-    <div class="form-group">
-      <%= f.label :order_comment, 'コメント' %><br>
+    <input type="button" onclick="template();" value="テンプレート挿入">
+
       <%= f.text_area :order_comment, class: 'form-control', rows: "8" %>
     </div>
     <% end %>
