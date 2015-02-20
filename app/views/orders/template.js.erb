@@ -3,7 +3,6 @@ num = SelectValue - 1;
 a = [];
 <% @template.each do | t |%>
 a.push("<%= escape_javascript(t.body) %>");
-b = "<%= escape_javascript(t.body) %>"
 <% end %>
 
 $("#order_order_comment").val(a[num]);
