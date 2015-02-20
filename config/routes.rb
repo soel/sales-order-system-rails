@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :orders, except: [:destroy] do
     resources :comments
+    collection do
+      get 'template'
+    end
   end
 
   resources :destemails

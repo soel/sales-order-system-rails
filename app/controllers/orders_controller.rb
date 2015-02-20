@@ -96,6 +96,10 @@ class OrdersController < ApplicationController
     respond_with(@order)
   end
 
+  def template
+    @template = CommentTemplate.all
+  end
+
   private
     def set_order
       @order = Order.find(params[:id])

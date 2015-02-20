@@ -116,11 +116,12 @@
       <option value="">必要な場合選択してください</option>
       <% if @template.present? %>
       <% @template.each do |template|%>
-      <option value=<%= template.body.gsub(/\r\n/, "kaigyo") %>><%= template.name %></option>
+      <option value="<%= template.id %>"><%= template.name %></option>
       <% end %>
       <% end %>
     </select>
-    <input type="button" onclick="template();" value="テンプレート挿入">
+    
+    <%= link_to 'テンプレート挿入', { action: :template }, remote: true,  class: 'btn btn-default' %>
 
       <%= f.text_area :order_comment, class: 'form-control', rows: "8" %>
     </div>
@@ -154,9 +155,5 @@ $(document).ready(function()
       monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
     });
 });
-function template() {
-  var SelectValue = $('select[name="select"]').val();
-  val = SelectValue.replace(/kaigyo/g,'\n')
-  $("#order_order_comment").val(val);
-}
+
 </script>

@@ -10,7 +10,11 @@
 
       <strong>テンプレート文:</strong>
       <div class="well">
-        <%= simple_format(@comment_template.body) %>
+        <pre>
+        <code>
+<%= @comment_template.body %>
+        </code>
+        </pre>
       </div>
 
       <%= link_to '編集', edit_comment_template_path(@comment_template), class: 'btn btn-primary' %> 
