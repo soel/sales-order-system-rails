@@ -1,3 +1,5 @@
+env :PATH, ENV['PATH']
+
 set :job_template, "/bin/bash -i -c ':job'"
 
 set :output, 'log/crontab.log'
