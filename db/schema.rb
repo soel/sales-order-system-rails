@@ -39,14 +39,14 @@ ActiveRecord::Schema.define(version: 20150219083845) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "customernumbers", force: true do |t|
-    t.integer  "customer_num"
-    t.string   "name"
+    t.integer  "customer_num", null: false
+    t.string   "name",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "destemails", force: true do |t|
-    t.string   "email"
+    t.string   "email",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150219083845) do
   add_index "destemails_destgroups", ["destgroup_id"], name: "index_destemails_destgroups_on_destgroup_id"
 
   create_table "destgroups", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 20150219083845) do
   end
 
   create_table "orders", force: true do |t|
-    t.integer  "contract_number"
-    t.integer  "customer_number"
+    t.integer  "contract_number", null: false
+    t.integer  "customer_number", null: false
     t.date     "delivery_date"
-    t.string   "status"
+    t.string   "status",          null: false
     t.text     "web_url"
     t.text     "order_comment"
     t.datetime "created_at"
