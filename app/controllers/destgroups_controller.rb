@@ -56,7 +56,7 @@ class DestgroupsController < ApplicationController
     end
     
     def destgroup_params
-      p = params.require(:destgroup).permit(:name, :destemail_ids => [])
+      p = params.require(:destgroup).permit(:name, :flag, :destemail_ids => [])
       p[:destemail_ids] = [] if p[:destemail_ids].nil?
       p
     end

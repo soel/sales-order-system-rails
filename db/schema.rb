@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219083845) do
+ActiveRecord::Schema.define(version: 20150224025802) do
 
   create_table "comment_attachments", force: true do |t|
     t.integer  "comment_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150219083845) do
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "flag"
   end
 
   create_table "destgroups_orders", id: false, force: true do |t|
