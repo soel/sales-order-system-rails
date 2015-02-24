@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   def new
     @user = current_user
     @user_select = User.where.not(id: @user.id)
-    @destgroup = Destgroup.all
+    @destgroup = Destgroup.where.not(flag: "false")
     @order = Order.new
     @template = CommentTemplate.all
     @order_attachment = @order.order_attachments.build
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   def edit
     @user = current_user
     @owner = @order.users[0]
-    @destgroup = Destgroup.all
+    @destgroup = Destgroup.where.not(flag: "false")
     @user_select = User.where.not(id: @owner.id)
     #@user_select = User.all
     @order_all = @order.order_attachments.all
