@@ -22,18 +22,18 @@
       </div>
       <% end %>
     <% end %>
-    
+
     <div class="form-group">
       <%= f.label :contract_number, '契約番号' %><br>
       <%= f.text_field :contract_number, class: 'form-control', 'data-parsley-type' => 'integer', 'required' => '' %>
     </div>
-    
+
     <div class="form-group">
       <%= f.label :customer_number, '顧客番号' %><br>
       <%= f.text_field :customer_number, class: 'form-control', 'data-parsley-type' => 'integer', 'required' => '' %>
-      
+
     </div>
-  
+
     <div class="form-group">
       <%= f.label :destgroup_ids, '依頼先' %><br>
       <select id="order_destgroup_ids" name="order[destgroup_ids][]" multiple="multiple" required="true">
@@ -46,7 +46,7 @@
         <% end %>
       </select>
     </div>
-  
+
     <div class="form-group">
       <%= f.label :document, '添付ファイル' %><br>
       <% unless @order.new_record?%>
@@ -55,7 +55,7 @@
             <% name = File.basename o.document_url%>
             <%= link_to(name, o.document_url) %>
           <% end %>
-        <% end %>  
+        <% end %>
       <% else %>
         <%= f.fields_for :order_attachments do |o| %>
           <%= o.file_field :document %>
@@ -64,19 +64,19 @@
         <%= f.link_to_add "フィールドの追加", :order_attachments %>
       <% end %>
     </div>
-  
+
     <% unless @order.new_record? %>
     <div class="form-group">
       <%= f.label :delivery_date, '予定納期' %><br>
       <%= f.text_field :delivery_date %>
     </div>
     <% end %>
-  
+
     <div class="form-group">
       <%= f.label :status, 'ステータス' %><br>
       <%= f.select :status, ['確認中', '着手中', '作業完了'], {},  { :class => 'form-control' } %>
     </div>
-  
+
     <% if @order.new_record? %>
     <div class="form-group">
       <%= f.label :user_ids, '作成者' %><br>
@@ -90,25 +90,25 @@
       <%= @owner.username %>
     </div>
     <% end %>
-  
+
     <div class="form-group">
       <%= f.label :user_ids, 'メンバー' %><br>
       <select id="order_user_ids_table" name="order[user_ids][]" multiple="multiple">
         <% @user_select.each do |user| %>
           <% if user.orders.exists?(@order.id) %>
-            <option value=<%= user.id %> selected="selected"><%= user.username %></option>
+            <option value=<%= user.id %> selected="selected"><%= user.email %></option>
           <% else %>
-            <option value=<%= user.id %>><%= user.username %></option>
+            <option value=<%= user.id %>><%= user.email %></option>
           <% end %>
         <% end %>
       </select>
     </div>
-  
+
     <div class="form-group">
       <%= f.label :web_url %><br>
       <%= f.text_field :web_url, class: 'form-control' %>
     </div>
-    
+
     <% if @order.new_record? %>
     <div class="form-group">
       <%= f.label :order_comment, 'コメント' %><br>
@@ -120,13 +120,13 @@
       <% end %>
       <% end %>
     </select>
-    
+
     <%= link_to 'テンプレート挿入', { action: :template }, remote: true,  class: 'btn btn-default' %>
 
       <%= f.text_area :order_comment, class: 'form-control', rows: "8" %>
     </div>
     <% end %>
-    
+
   </div>
 </div>
 
