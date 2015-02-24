@@ -1,5 +1,3 @@
-env :PATH, ENV['PATH']
-
 set :job_template, "/bin/bash -i -c ':job'"
 
 set :output, 'log/crontab.log'
@@ -7,6 +5,6 @@ set :output, 'log/crontab.log'
 set :environment, :production
 
 every :hour do
-  runner "Sesson.sweep"
+  runner "Session.sweep"
 end
 
