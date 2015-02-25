@@ -1,14 +1,14 @@
 <div id='page-wrapper'>
   <div class='row'>
     <div class='col-lg-8'>
-      
+
       <a name="head"></a>
 
       <p class="text-info"><%= notice %></p>
       <p class="text-danger"><%= alert %></p>
-      
+
       <h2 class='page-header'>収容情報</h2>
-      
+
       <div class="well">
       <p>
         <strong>契約番号:</strong>
@@ -48,7 +48,7 @@
           <B class="text-danger"><%= @order.status %></B>
         <% elsif @order.status == '着手中' %>
           <B class="text-warning"><%= @order.status %></B>
-        <% elsif @order.status == '作業完了' %>
+        <% elsif @order.status == '完了' %>
           <B class="text-success"><%= @order.status %></B>
         <% end %>
       </p>
@@ -82,13 +82,13 @@
           <% end %>
         <% end %>
       </p>
-      
+
       <%= link_to '収容情報編集', edit_order_path(@order), class: 'btn btn-outline btn-primary btn-sm'%>
       </div>
       <p class="fa fa-arrow-left "><%= link_to ' 顧客情報一覧へ戻る', orders_path %></p>
 
       <h3 class='page-header'>コメント</h3>
-      
+
       <% if @order.order_comment.present? %>
         <% if @order.users[0].avatar.url.present? %>
           <%= image_tag @order.users[0].avatar.thumb.url %>
