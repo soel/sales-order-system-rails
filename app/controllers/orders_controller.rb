@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
   def new
     @user = current_user
-    @user_select = User.where.not(id: @user.id)
+    @user_select = User.where.not(id: @user.id).where(locked_at: nil)
     @destgroup = Destgroup.where.not(flag: "false")
     @order = Order.new
     @template = CommentTemplate.all
@@ -29,10 +29,10 @@ class OrdersController < ApplicationController
     @user = current_user
     @owner = @order.users[0]
     @destgroup = Destgroup.where.not(flag: "false")
-    @user_select = User.where.not(id: @owner.id)
+    @user_select = User.where.not(id: @owner.id).where(locked_at: nil)
     #@user_select = User.all
     @order_all = @order.order_attachments.all
-    
+
   end
 
   def create
@@ -41,9 +41,9 @@ class OrdersController < ApplicationController
       user = @order.users.pluck(:email)
       grmail = @order.destemails.pluck(:email)
       tomail = user + grmail
-    
+
       OrderMailer.order_email(tomail, @order).deliver
-      
+
       respond_with(@order)
     else
       #respond_with(@order)
@@ -56,36 +56,36 @@ class OrdersController < ApplicationController
   def update
     @user = current_user
     @order.attributes = order_params
-    
+
     change_status = @order.status_changed?
     change_status_value = @order.status_change
     change_delivery_date = @order.delivery_date_changed?
     change_delivery_date_value = @order.delivery_date_change
-    
+
     if @order.update(order_params)
-      
+
       if change_status or change_delivery_date
-       
+
         commenter = @order.comments.pluck(:user_id)
         commenter.uniq!
-    
+
         users = []
         commenter.each do | c |
           users << User.find(c).email
         end
-    
+
         ordermember = @order.users.pluck(:email)
         ordergroup = @order.destemails.pluck(:email)
-    
+
         tomail = users + ordermember + ordergroup
         tomail.uniq!
-    
+
         OrderEditMailer.order_edit_email(tomail, @order, @user, change_status_value, change_delivery_date_value).deliver
       end
-      
+
       respond_with(@order)
     else
-    
+
       flash[:alert] = @order.errors.full_messages
       redirect_to action: :edit
     end
