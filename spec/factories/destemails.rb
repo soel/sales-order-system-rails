@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :destemail do
+    email "test@example.com"
   end
 end
