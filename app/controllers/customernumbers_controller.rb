@@ -15,7 +15,7 @@ class CustomernumbersController < ApplicationController
 
   def new
     if Customernumber.last.present?
-      number = Customernumber.last.customer_num + 1
+      number = Customernumber.maximum(:customer_num) + 1
       @customernumber = Customernumber.new(:customer_num => number)
     else
       @customernumber = Customernumber.new
