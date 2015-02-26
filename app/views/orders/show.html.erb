@@ -85,7 +85,8 @@
 
       <%= link_to '収容情報編集', edit_order_path(@order), class: 'btn btn-outline btn-primary btn-sm'%>
       </div>
-      <p class="fa fa-arrow-left "><%= link_to ' 顧客情報一覧へ戻る', orders_path %></p>
+      <p class="fa fa-arrow-left "><%= link_to ' 顧客情報一覧へ戻る', orders_path %></p><br>
+      <p class="fa fa-arrow-down"><%= link_to ' ページ下へ', order_path(@order, :anchor => 'foot')%></p>
 
       <h3 class='page-header'>コメント</h3>
 
