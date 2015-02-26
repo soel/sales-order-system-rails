@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20150224025802) do
 
   create_table "orders", force: true do |t|
     t.string   "contract_number", null: false
-    t.integer  "customer_number", null: false
+    t.string   "customer_number", null: false
     t.date     "delivery_date"
     t.string   "status",          null: false
     t.text     "web_url"
