@@ -44,12 +44,14 @@
 
       <p>
         <strong>ステータス:</strong>
-        <% if @order.status == '確認中' %>
+        <% if @order.status == 'エンジニア確認中' %>
           <B class="text-danger"><%= @order.status %></B>
-        <% elsif @order.status == '着手中' %>
+        <% elsif @order.status == '作業中' %>
           <B class="text-warning"><%= @order.status %></B>
-        <% elsif @order.status == '完了' %>
+        <% elsif @order.status == 'エンジニア作業完了' %>
           <B class="text-success"><%= @order.status %></B>
+        <% elsif @order.status == '完了' %>
+          <B class="text-primary"><%= @order.status %></B>
         <% end %>
       </p>
 
